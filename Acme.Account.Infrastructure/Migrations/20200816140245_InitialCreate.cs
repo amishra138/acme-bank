@@ -81,7 +81,12 @@ namespace Acme.Account.Infrastructure.Migrations
                     ModifiedByUsername = table.Column<string>(nullable: true),
                     ModifiedOn = table.Column<DateTime>(nullable: true),
                     CustomerId = table.Column<int>(nullable: false),
-                    Type = table.Column<int>(nullable: false)
+                    Type = table.Column<int>(nullable: false),
+                    Address1 = table.Column<string>(nullable: true),
+                    Address2 = table.Column<string>(nullable: true),
+                    State = table.Column<string>(nullable: true),
+                    Country = table.Column<string>(nullable: true),
+                    Pincode = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
