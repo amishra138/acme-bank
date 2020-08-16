@@ -1,10 +1,10 @@
-﻿using Acme.Account.Core.Command;
+﻿using Acme.Account.Core.Command.Customer;
 using MediatR;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Acme.Account.Core.CommandHandler
+namespace Acme.Account.Core.CommandHandler.Customer
 {
     public class UpdateCustomerRequestHandler : IRequestHandler<UpdateCustomerRequest, string>
     {

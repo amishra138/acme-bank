@@ -1,4 +1,4 @@
-﻿using Acme.Account.Core.Command;
+﻿using Acme.Account.Core.Command.Customer;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 

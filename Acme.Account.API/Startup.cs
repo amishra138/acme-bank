@@ -4,6 +4,7 @@ using Acme.Account.Core.Extensions;
 using Acme.Account.Core.Interfaces;
 using Acme.Account.Infrastructure;
 using Acme.Account.Infrastructure.Repositories;
+using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -13,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System;
 
 namespace Acme.Account.API
 {
@@ -28,6 +30,10 @@ namespace Acme.Account.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services
+                .AddMvc()
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssembly(typeof(Startup).Assembly));
+
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
@@ -38,9 +44,9 @@ namespace Acme.Account.API
                 .AddDbContext<AcmeContext>(o => o.UseSqlServer(Configuration["ConnectionString"]));
 
             services.AddInfraServices();
-            
+
             services.AddCoreServices();
-            
+
             services.AddControllers();
         }
 

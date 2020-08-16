@@ -1,11 +1,11 @@
-﻿using Acme.Account.Core.Command;
+﻿using Acme.Account.Core.Command.Customer;
 using Acme.Account.Core.Interfaces;
 using Acme.Account.Core.Models;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Acme.Account.Core.CommandHandler
+namespace Acme.Account.Core.CommandHandler.Customer
 {
     public class CreateCustomerRequestHandler : IRequestHandler<CreateCustomerRequest, string>
     {

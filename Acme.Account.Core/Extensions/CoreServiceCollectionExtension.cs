@@ -1,4 +1,4 @@
-﻿using Acme.Account.Core.Command;
+﻿using Acme.Account.Core.Command.Customer;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
