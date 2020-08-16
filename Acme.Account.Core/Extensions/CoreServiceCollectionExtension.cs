@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Acme.Account.Core.Command;
+using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Acme.Account.Core.Extensions
 {
@@ -6,7 +8,7 @@ namespace Acme.Account.Core.Extensions
     {
         public static void AddCoreServices(this IServiceCollection services)
         {
-
+            services.AddMediatR(typeof(CreateCustomerRequest).Assembly);
         }
     }
 }

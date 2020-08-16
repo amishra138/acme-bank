@@ -4,5 +4,10 @@
         <name>Acme.Account.API</name>
     </assembly>
     <members>
+        <member name="T:Acme.Account.API.Controllers.CustomerController">
+            <summary>
+            Customer 
+            </summary>
+        </member>
     </members>
 </doc>

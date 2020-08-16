@@ -20,16 +20,9 @@ namespace Acme.Account.Infrastructure
 
         public DbSet<TransactionModel> Transactions { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder);
-        }
-
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-
-
             builder.ApplyConfiguration(new CustomerEntityConfigurations());
             builder.ApplyConfiguration(new AccountEntityConfigurations());
             builder.ApplyConfiguration(new AddressEntityConfigurations());
