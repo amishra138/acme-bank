@@ -10,7 +10,6 @@ namespace Acme.Account.Infrastructure
 
         public AcmeContext(DbContextOptions<AcmeContext> options) : base(options)
         {
-            AcmeContextInitializer.SetInitializer
         }
 
         public DbSet<CustomerModel> Customers { get; set; }
