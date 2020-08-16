@@ -5,22 +5,40 @@ namespace Acme.Account.Core.Models
 {
     public class AccountModel : BaseEntity
     {
-        public AccountModel()
+        public AccountModel(AccountType type, string number, float minBalance)
         {
+            Type = type;
+            Number = number;
+            MinBalance = minBalance;
             Transactions = new List<TransactionModel>();
         }
-        public CustomerModel Customer { get; set; }
 
-        public int CustomerId { get; set; }
+        public void LockAccount()
+        {
+            IsLocked = true;
+        }
 
-        public AccountType Type { get; set; }
+        public void AddTransaction(TransactionModel transaction)
+        {
+            if (Transactions == null)
+                Transactions = new List<TransactionModel>();
 
-        public string Number { get; set; }
+            Transactions.Add(transaction);
+        }
 
-        public float MinBalance { get; set; }
+        public CustomerModel Customer { get; private set; }
 
-        public bool IsLocked { get; set; }
+        public int CustomerId { get; private set; }
 
-        public IList<TransactionModel> Transactions { get; set; }
+        public AccountType Type { get; private set; }
+
+        public string Number { get; private set; }
+
+        public float MinBalance { get; private set; }
+
+        public bool IsLocked { get; private set; }
+
+        public IList<TransactionModel> Transactions { get; private set; }
+
     }
 }

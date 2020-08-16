@@ -19,11 +19,13 @@ namespace Acme.Account.Infrastructure.Repositories
             _dbSet = context.Set<T>();
         }
 
-        public async Task CreateAsync(T entity)
+        public async Task<T> CreateAsync(T entity)
         {
             _dbSet.Add(entity);
 
             await _context.SaveChangesAsync();
+
+            return entity;
         }
 
         public async Task DeleteAsync(Guid id)
@@ -32,7 +34,7 @@ namespace Acme.Account.Infrastructure.Repositories
             await DeleteAsync(entity);
         }
 
-        public async Task DeleteAsync(T entity)
+        public async Task<T> DeleteAsync(T entity)
         {
             if (_context.Entry(entity).State == EntityState.Detached)
                 _dbSet.Attach(entity);
@@ -40,6 +42,8 @@ namespace Acme.Account.Infrastructure.Repositories
             _dbSet.Remove(entity);
 
             await _context.SaveChangesAsync();
+
+            return entity;
         }
 
         public async Task<IEnumerable<T>> GetAllAsync()
@@ -54,12 +58,14 @@ namespace Acme.Account.Infrastructure.Repositories
             return entity;
         }
 
-        public async Task UpdateAsync(T entity)
+        public async Task<T> UpdateAsync(T entity)
         {
             _dbSet.Attach(entity);
             _context.Entry(entity).State = EntityState.Modified;
 
             await _context.SaveChangesAsync();
+
+            return entity;
         }
 
         protected virtual void Dispose(bool disposing)

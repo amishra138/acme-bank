@@ -1,4 +1,5 @@
 using Acme.Account.Core.Command;
+using Acme.Account.Core.Command.Customer;
 using Acme.Account.Core.CommandHandler;
 using Acme.Account.Core.Extensions;
 using Acme.Account.Core.Interfaces;
@@ -14,6 +15,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
 using System;
 
 namespace Acme.Account.API
@@ -32,7 +34,7 @@ namespace Acme.Account.API
         {
             services
                 .AddMvc()
-                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssembly(typeof(Startup).Assembly));
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CreateCustomerRequest>());
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
@@ -47,7 +49,9 @@ namespace Acme.Account.API
 
             services.AddCoreServices();
 
-            services.AddControllers();
+            services
+                .AddControllers()
+                .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

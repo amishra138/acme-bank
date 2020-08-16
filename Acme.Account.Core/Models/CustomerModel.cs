@@ -26,14 +26,20 @@ namespace Acme.Account.Core.Models
             CreatedByUserName = "amishra";
         }
 
-        public void AddAddress(List<AddressModel> addresses)
+        public void AddAddress(AddressModel address)
         {
-            Addresses = addresses;
+            if (Addresses == null)
+                Addresses = new List<AddressModel>();
+
+            Addresses.Add(address);
         }
 
-        public void AddAccounts(List<AccountModel> accounts)
+        public void AddAccounts(AccountModel account)
         {
-            Accounts = accounts;
+            if (Accounts == null)
+                Accounts = new List<AccountModel>();
+
+            Accounts.Add(account);
         }
     }
 }
